@@ -1,0 +1,35 @@
+{
+    "name": "xkd_vue",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "dotenv -e .env vue-cli-service serve",
+        "build": "dotenv -e .env.production vue-cli-service build"
+    },
+    "dependencies": {
+        "axios": "^0.20.0",
+        "babel-plugin-import": "^1.13.0",
+        "core-js": "^3.6.5",
+        "dotenv": "^8.2.0",
+        "qs": "^6.9.4",
+        "vant": "^2.10.4",
+        "vue": "^3.0.0-0",
+        "vue-axios": "^2.1.5",
+        "vue-class-component": "^8.0.0-0",
+        "vue-property-decorator": "^9.0.0",
+        "vue-router": "^4.0.0-0",
+        "vuex": "^4.0.0-0",
+        "vuex-persist": "^2.2.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-router": "~4.5.0",
+        "@vue/cli-plugin-typescript": "~4.5.0",
+        "@vue/cli-plugin-vuex": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "@vue/compiler-sfc": "^3.0.0-0",
+        "less": "^3.0.4",
+        "less-loader": "^5.0.0",
+        "typescript": "~3.9.3"
+    }
+}
