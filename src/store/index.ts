@@ -1,7 +1,10 @@
-import { createStore } from "vuex";
+import vue from "vue";
+import Vuex  from "vuex";
 import VuexPersistence from "vuex-persist";
 
 import { UserInfo } from "./store";
+
+vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
     storage: window.localStorage,
@@ -26,4 +29,4 @@ const store = {
     plugins: [vuexLocal.plugin],
 };
 
-export default createStore(store);
+export default new Vuex.Store(store);

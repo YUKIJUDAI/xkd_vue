@@ -9,9 +9,9 @@
             </p>
         </div>
         <div class="login-form">
-            <div :is="loginWayTemp" ref="loginWayTemp"></div>
+            <component :is="loginWayTemp" ref="loginWayTemp"></component>
             <div class="login-submit">
-                <div class="xkd-btn-primary" @Click="login">登录</div>
+                <div class="xkd-btn-primary" @click="login">登录</div>
             </div>
             <div class="login-other clearfix">
                 <p class="fl">
@@ -19,7 +19,7 @@
                     <router-link to="/registered" class="blue">去注册</router-link>
                 </p>
                 <p class="fr">
-                    <router-link class="blue" to="/forget">忘记密码</router-link>
+                    <router-link to="/forget" class="blue">忘记密码</router-link>
                 </p>
             </div>
         </div>
@@ -27,10 +27,7 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import { Toast } from 'vant';
-
-import http from "@/utils/http";
+import { Component, Vue } from "vue-property-decorator";
 
 import LoginByPassword from "./loginByPassword.vue";
 import LoginByCode from "./loginByCode.vue";
@@ -38,11 +35,17 @@ import LoginByCode from "./loginByCode.vue";
 
 interface LoginInfo { phone: string; password?: string; smscode?: string; }
 
-@Options({})
+@Component({
+    components: { LoginByPassword, LoginByCode }
+})
 export default class Login extends Vue {
     loginWay: 0 | 1 = 0; // 登录方式  0密码登录  1短信登录
 
     loginWayTemp: any = null; //登录模板
+
+    created() {
+        this.changeLoginWay(0);
+    }
 
     // 修改登录方式
     changeLoginWay = (loginWay: 0 | 1) => {
@@ -53,14 +56,14 @@ export default class Login extends Vue {
     // 登录
     login = async () => {
         const url = ["User/Login/pwd", "User/Login/sms",][this.loginWay];
-        const res: any = await http.post(url, (this.$refs.loginWayTemp as any).loginInfo);
+        const res: any = await this.$http.post(url, (this.$refs.loginWayTemp as any).loginInfo);
 
         if (res.code === 200) {
-            Toast.success(res.msg);
+            this.$toast.success(res.msg);
             // setToken(res.result);
             this.$router.push("/");
         } else {
-            Toast.fail(res.msg);
+            this.$toast.fail(res.msg);
         }
     };
 
