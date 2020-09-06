@@ -4,7 +4,7 @@
             <span>+86</span>
             <input type="text" v-model="loginInfo.phone" class="xkd-input" placeholder="请输入手机号" />
         </div>
-        <CodeInput type="login" v-model="logininfo.smscode"></CodeInput>
+        <CodeInput type="login" v-model="loginInfo.smscode"></CodeInput>
     </div>
 </template>
 

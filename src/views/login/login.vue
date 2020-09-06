@@ -1,10 +1,10 @@
 <template>
     <div class="login">
         <div class="xkd-tab login-tab">
-            <p :class="{active: loginWay===0}" @click="changeLoginWay(0)">
+            <p :class="{'active': loginWay === 0}" @click="changeLoginWay(0)">
                 密码登录
             </p>
-            <p :class="{active:loginWay===1}" @click="changeLoginWay(1)">
+            <p :class="{'active': loginWay === 1}" @click="changeLoginWay(1)">
                 短信登录
             </p>
         </div>
@@ -41,16 +41,12 @@ interface LoginInfo { phone: string; password?: string; smscode?: string; }
 export default class Login extends Vue {
     loginWay: 0 | 1 = 0; // 登录方式  0密码登录  1短信登录
 
-    loginWayTemp: any = null; //登录模板
-
-    created() {
-        this.changeLoginWay(0);
-    }
+    loginWayTemp: any = 'LoginByPassword'; //登录模板
 
     // 修改登录方式
-    changeLoginWay = (loginWay: 0 | 1) => {
+    changeLoginWay(loginWay: 0 | 1) {
         this.loginWay = loginWay;
-        this.loginWayTemp = [LoginByPassword, LoginByCode][loginWay];
+        this.loginWayTemp = ["LoginByPassword", "LoginByCode"][loginWay];
     };
 
     // 登录
