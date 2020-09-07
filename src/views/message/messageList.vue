@@ -1,5 +1,5 @@
 <template>
-    <van-pull-refresh v-model="isLoading" success-text="刷新成功">
+    <van-pull-refresh v-model="isLoading" success-text="刷新成功"></van-pull-refresh>
 </template>
 
 <script lang="ts">

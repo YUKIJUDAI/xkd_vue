@@ -29,7 +29,7 @@ const routes = [
         component: () => import("@/views/college/detail.vue"),
     },
     {
-        path: "/college/message",
+        path: "/message",
         component: () => import("@/views/message/message.vue"),
     },
     // {

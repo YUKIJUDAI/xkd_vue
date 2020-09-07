@@ -41,6 +41,6 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 @import url("./leaderboard.less");
 </style>

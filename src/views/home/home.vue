@@ -20,32 +20,32 @@
             </div>
             <!-- nav -->
             <nav class="clearfix">
-                <van-swipe>
-                    <van-swipe-item>
+                <swiper ref="nav-swiper" :options="navSwiperOptions">
+                    <swiper-slide>
                         <p :class="{active:indexNav === -1}">推荐</p>
-                    </van-swipe-item>
-                    <van-swipe-item>
+                    </swiper-slide>
+                    <swiper-slide>
                         <p :class="{active:indexNav === -2}">全部</p>
-                    </van-swipe-item>
-                    <van-swipe-item>
+                    </swiper-slide>
+                    <swiper-slide>
                         <p :class="{active:indexNav === i}" v-for="(item,i) in tagList" :key="i">{{item.name}}</p>
-                    </van-swipe-item>
-                </van-swipe>
+                    </swiper-slide>
+                </swiper>
             </nav>
         </div>
         <!-- swiper -->
         <div class="home-swiper">
-            <van-swipe>
-                <van-swipe-item>
+            <swiper ref="swiper">
+                <swiper-slide>
                     <div class="home-swiper-slide">slider1</div>
-                </van-swipe-item>
-                <van-swipe-item>
+                </swiper-slide>
+                <swiper-slide>
                     <div class="home-swiper-slide">slider2</div>
-                </van-swipe-item>
-                <van-swipe-item>
+                </swiper-slide>
+                <swiper-slide>
                     <div class="home-swiper-slide">slider3</div>
-                </van-swipe-item>
-            </van-swipe>
+                </swiper-slide>
+            </swiper>
         </div>
         <!-- menu -->
         <div class="home-menu">
@@ -223,6 +223,9 @@ export default class extends Vue {
             title: "签到有礼",
         },
     ];
+    navSwiperOptions: any = {
+        slidesPerView: 7,
+    }
 
     created() {
         this.getUnread();

@@ -1,15 +1,15 @@
 <template>
     <div class="college">
         <div class="college-carousel">
-            <van-swipe :autoplay="3000" indicator-color="white">
-                <van-swipe-item class="college-swiper-slide">slider1</van-swipe-item>
-                <van-swipe-item class="college-swiper-slide">slider2</van-swipe-item>
-                <van-swipe-item class="college-swiper-slide">slider3</van-swipe-item>
-            </van-swipe>
+            <swiper :autoplay="3000" indicator-color="white">
+                <swiper-slide class="college-swiper-slide">slider1</swiper-slide>
+                <swiper-slide class="college-swiper-slide">slider2</swiper-slide>
+                <swiper-slide class="college-swiper-slide">slider3</swiper-slide>
+            </swiper>
         </div>
         <div class="college-tabs">
-            <van-tabs color="#333" title-active-color="#333">
-                <van-tab>
+            <van-tabs color="#999" title-active-color="#FCD000" line-width="64">
+                <van-tab title="心得分享">
                     <div class="college-tabs1">
                         <ul class="college-tabs1-list">
                             <li>
@@ -30,6 +30,8 @@
                         </ul>
                         <ScrollBack></ScrollBack>
                     </div>
+                </van-tab>
+                <van-tab title="高级教程">
                     <div class="college-tabs2">
                         <ul class="college-tabs1-list">
                             <li>
@@ -45,8 +47,8 @@
                         </ul>
                         <ScrollBack></ScrollBack>
                     </div>
-                </van-tab>
-            </van-tabs>
+                    </van-tab>
+                </van-tabs>
         </div>
         <Footer :selectedTab="1"></Footer>
     </div>

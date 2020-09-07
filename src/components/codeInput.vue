@@ -81,4 +81,5 @@ export default class CodeInput extends Vue {
 </script>
 
 <style lang="less" scoped>
+@import url("~@/views/login/login.less");
 </style>
