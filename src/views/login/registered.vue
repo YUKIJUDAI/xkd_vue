@@ -52,7 +52,7 @@ export default class Reistered extends Vue {
 
     loginInfo: LoginInfo = { phone: "", smscode: "", password: "", invitecode: "" };
     // 点击注册
-    registered = async () => {
+    async registered() {
         const res: any = await this.$http.post("User/Register/index", this.loginInfo);
         if (res.code === 200) {
             this.$toast.success(res.msg);

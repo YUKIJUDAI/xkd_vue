@@ -8,7 +8,7 @@
                             <p>通知列表</p>
                             <p>全部已读</p>
                         </div>
-                        <MessageList type={1}></MessageList>
+                        <MessageList :type="1"></MessageList>
                     </div>
                 </van-tab>
                 <van-tab title="消息">
@@ -17,7 +17,7 @@
                             <p>消息列表</p>
                             <p>全部已读</p>
                         </div>
-                        <MessageList type={2}></MessageList>
+                        <MessageList :type="2"></MessageList>
                     </div>
                 </van-tab>
             </van-tabs>

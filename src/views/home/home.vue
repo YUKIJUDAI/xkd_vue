@@ -3,10 +3,10 @@
         <div class="home-fixed-top">
             <!-- head -->
             <div class="home-head">
-                <div class="home-head-message">
+                <router-link tag="div" class="home-head-message" to="/message">
                     <img src="@/static/img/message.png" alt="" />
                     <p v-show="unRead"></p>
-                </div>
+                </router-link>
                 <div class="home-head-search">
                     <img src="@/static/img/search.png" alt="" />
                     <input type="text" placeholder="活出漂亮人生" disabled />
@@ -50,7 +50,7 @@
         <!-- menu -->
         <div class="home-menu">
             <ul>
-                <li key={i} v-for="(item,i) in menulist" :key="i">
+                <li v-for="(item,i) in menulist" :key="i">
                     <img :src="item.src" alt="" />
                     <p>{{item.title}}</p>
                 </li>

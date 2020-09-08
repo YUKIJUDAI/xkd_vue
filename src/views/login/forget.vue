@@ -40,7 +40,7 @@ interface LoginInfo {
 export default class extends Vue {
     loginInfo: LoginInfo = { phone: "", smscode: "", password: "" };
 
-    forget = async () => {
+    async forget() {
         const res: any = await this.$http.post("User/Forget/index", this.loginInfo);
         if (res.code === 200) {
             this.$toast.success(res.msg);

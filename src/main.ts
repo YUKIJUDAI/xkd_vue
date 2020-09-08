@@ -1,13 +1,13 @@
 import Vue from "vue";
-import VueAwesomeSwiper from 'vue-awesome-swiper';
-import { Toast, Dialog, Tab, Tabs, PullRefresh, Swipe, SwipeItem, Tabbar, TabbarItem } from "vant";
+import VueAwesomeSwiper from "vue-awesome-swiper";
+import { Toast, Dialog, Tab, Tabs, PullRefresh, Swipe, SwipeItem, Tabbar, TabbarItem, List } from "vant";
 
 import App from "./App.vue";
 import router from "@/router/index";
 import store from "@/store/index";
 import http from "@/utils/http";
 
-import 'swiper/swiper-bundle.css';
+import "swiper/swiper-bundle.css";
 import "@/assets/less/index.less";
 
 declare module "vue/types/vue" {
@@ -30,6 +30,7 @@ Vue.use(Swipe);
 Vue.use(SwipeItem);
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
+Vue.use(List);
 
 new Vue({
     router,

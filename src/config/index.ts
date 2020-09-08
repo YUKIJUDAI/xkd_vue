@@ -1,1 +1,1 @@
-export const baseURL = process.env.REACT_APP_BASE_URL;
+export const baseURL = process.env.NODE_ENV === "development" ? "/Api" : "http://xkd.lethink.net/Api/";
