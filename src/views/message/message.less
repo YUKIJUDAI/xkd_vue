@@ -12,4 +12,52 @@
         font-size: 0.24rem;
         color: #999;
     }
+    .messages {
+        padding: 0.3rem 0;
+        border-bottom: 1px solid #f5f6f9;
+        .messages-left {
+            font-size: 0.28rem;
+            color: #030303;
+            p {
+                width: 4rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            span {
+                width: 0.14rem;
+                height: 0.14rem;
+                border-radius: 0.07rem;
+                background: #a4a4a4;
+                display: inline-block;
+                margin-right: 0.2rem;
+            }
+            .active {
+                background: #ff5238;
+            }
+        }
+        .messages-right {
+            font-size: 0.22rem;
+            color: #a4a4a4;
+        }
+    }
+}
+.message-detail {
+    margin: 0.4rem 0.26rem;
+    .message-detail-title {
+        font-size: 0.36rem;
+        color: #030303;
+        font-weight: bold;
+    }
+    .message-detail-msg {
+        padding: 0.32rem 0 0.12rem;
+        font-size: 0.22rem;
+        color: #999;
+        border-bottom: 1px solid #F5F6F9;
+    }
+    .message-detail-content {
+        margin-top: 0.3rem;
+        color: #666;
+        font-size: 0.28rem;
+    }
 }

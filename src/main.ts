@@ -6,6 +6,7 @@ import App from "./App.vue";
 import router from "@/router/index";
 import store from "@/store/index";
 import http from "@/utils/http";
+import filter from "@/filter/index";
 
 import "swiper/swiper-bundle.css";
 import "@/assets/less/index.less";
@@ -16,6 +17,10 @@ declare module "vue/types/vue" {
         $toast: Toast;
     }
 }
+
+Object.keys(filter).map((item: string) => {
+    Vue.filter(item, filter[item as "changeDay"]);
+});
 
 Vue.prototype.$http = http;
 

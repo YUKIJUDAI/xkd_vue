@@ -32,10 +32,10 @@ const routes = [
         path: "/message",
         component: () => import("@/views/message/message.vue"),
     },
-    // {
-    //     path: "/college/message/:id",
-    //     component: () => import("@/views/message/detail.vue"),
-    // },
+    {
+        path: "/message/detail/:id",
+        component: () => import("@/views/message/detail.vue"),
+    }
 ];
 
 const router = new Router({
