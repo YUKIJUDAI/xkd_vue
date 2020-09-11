@@ -19,33 +19,25 @@
                 </div>
             </div>
             <!-- nav -->
-            <nav class="clearfix">
-                <swiper ref="nav-swiper" :options="navSwiperOptions">
-                    <swiper-slide>
-                        <p :class="{active:indexNav === -1}">推荐</p>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <p :class="{active:indexNav === -2}">全部</p>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <p :class="{active:indexNav === i}" v-for="(item,i) in tagList" :key="i">{{item.name}}</p>
-                    </swiper-slide>
-                </swiper>
+            <nav>
+                <van-tabs animated swipeable color='#FF9900' title-active-color='#FF9900' @click="toApplication">
+                    <van-tab name="0" title="推荐"></van-tab>
+                    <van-tab name="0" title="全部"></van-tab>
+                    <van-tab :name="item.id" v-for="(item,i) in tagList" :key="i" :title="item.name"></van-tab>
+                </van-tabs>
             </nav>
         </div>
         <!-- swiper -->
         <div class="home-swiper">
-            <swiper ref="swiper">
-                <swiper-slide>
-                    <div class="home-swiper-slide">slider1</div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="home-swiper-slide">slider2</div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="home-swiper-slide">slider3</div>
-                </swiper-slide>
-            </swiper>
+            <van-swipe>
+                <van-swipe-item v-for="(item,i) in adsList" :key="i">
+                    <div class="home-swiper-slide">
+                        <a :href="item.jump_link" target="_blank">
+                            <img :src="item.img | qnImg" alt="">
+                        </a>
+                    </div>
+                </van-swipe-item>
+            </van-swipe>
         </div>
         <!-- menu -->
         <div class="home-menu">
@@ -58,12 +50,16 @@
         </div>
         <!-- announcement -->
         <div class=" home-announcement">
-            <span style="color: '#333'">系统公告</span>
-            <span style="color: '#FCD000'"> | </span>
-            <span>小科抖推广宣传基本要求</span>
-            <p class="fr">
-                <i class="right"></i>
-            </p>
+            <van-swipe vertical autoplay="3000" style="height:0.6rem" :show-indicators="false">
+                <van-swipe-item v-for="(item,i) in announcementList" :key="i" style="height:0.6rem">
+                    <span style="color: '#333'">系统公告</span>
+                    <span style="color: '#FCD000'"> | </span>
+                    <span>{{item.title}}</span>
+                    <p class="fr">
+                        <i class="right"></i>
+                    </p>
+                </van-swipe-item>
+            </van-swipe>
         </div>
         <!-- ranking -->
         <div class="home-ranking">
@@ -74,108 +70,18 @@
                 </span>
             </div>
             <p class="home-ranking-remarks">注：收益排行数据为2020-8-23用户</p>
-            <Leaderboard></Leaderboard>
+            <Leaderboard :limit="3"></Leaderboard>
         </div>
         <!-- recommend -->
-        <div class="border-top"></div>
-        <div class="home-recommend">
-            <div class="home-title clearfix">
-                <p class="fl">免费推广</p>
-                <span class="fr">
-                    全部<i class="right"></i>
-                </span>
-            </div>
-            <div class="home-recommend-list">
-                <ul>
-                    <li>
-                        <div class="home-recommend-list-left">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="home-recommend-list-center">
-                            <p>漫画头像生成器</p>
-                            <p>
-                                收益：自推<span class="color666">90%</span>
-                            </p>
-                            <p>
-                                <i class="xingqu"></i>趣测趣玩
-                            </p>
-                        </div>
-                        <div class="home-recommend-list-right">
-                            <img src="" alt="" />
-                            <p>去推广</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <Recommend title="免费推广" :is_free="1"></Recommend>
         <!-- recommend -->
-        <div class="border-top"></div>
-        <div class="home-recommend">
-            <div class="home-title clearfix">
-                <p class="fl">今日新品</p>
-                <span class="fr">
-                    全部<i class="right"></i>
-                </span>
-            </div>
-            <div class="home-recommend-list">
-                <ul>
-                    <li>
-                        <div class="home-recommend-list-left">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="home-recommend-list-center">
-                            <p>漫画头像生成器</p>
-                            <p>
-                                收益：自推<span class="color666">90%</span>
-                            </p>
-                            <p>
-                                <i class="xingqu"></i>趣测趣玩
-                            </p>
-                        </div>
-                        <div class="home-recommend-list-right">
-                            <img src="" alt="" />
-                            <p>去推广</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <Recommend title="今日新品" :is_new="1"></Recommend>
         <!-- recommend -->
-        <div class="border-top"></div>
-        <div class="home-recommend">
-            <div class="home-title clearfix">
-                <p class="fl">热门榜单</p>
-                <span class="fr">
-                    全部<i class="right"></i>
-                </span>
-            </div>
-            <div class="home-recommend-list">
-                <ul>
-                    <li>
-                        <div class="home-recommend-list-left">
-                            <img src="" alt="" />
-                        </div>
-                        <div class="home-recommend-list-center">
-                            <p>漫画头像生成器</p>
-                            <p>
-                                收益：自推<span class="color666">90%</span>
-                            </p>
-                            <p>
-                                <i class="xingqu"></i>趣测趣玩
-                            </p>
-                        </div>
-                        <div class="home-recommend-list-right">
-                            <img src="" alt="" />
-                            <p>去推广</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <Recommend title="热门榜单" :is_hot="1"></Recommend>
         <!-- ScrollBack -->
         <ScrollBack></ScrollBack>
         <!-- footer -->
-        <Footer :selectedTab="0"></Footer>
+        <Footer :selectTab="0"></Footer>
     </div>
 </template>
 
@@ -185,6 +91,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Footer from "@/layout/footer.vue";
 import ScrollBack from "@/components/scrollBack.vue";
 import Leaderboard from "@/components/leaderboard.vue";
+import Recommend from "@/components/recommend.vue";
 
 
 interface MenuType {
@@ -193,14 +100,17 @@ interface MenuType {
 }
 
 @Component({
-    components: { ScrollBack, Leaderboard, Footer }
+    components: { ScrollBack, Leaderboard, Footer, Recommend }
 })
-export default class extends Vue {
+export default class Home extends Vue {
+
+    navFlag: boolean = false;
 
     unRead: boolean = false; // 未读消息
-    tagList: any[] = []; // tag列表
+    tagList: Array<{ [propsName: string]: any }> = []; // tag列表
+    adsList: Array<{ [propsName: string]: any }> = []; // 广告列表
     indexNav: number = 0; // 选中的列表
-    announcementList: any[] = []; // 公告列表
+    announcementList: Array<{ [propsName: string]: any }> = []; // 公告列表
     menulist: MenuType[] = [
         {
             src: require("@/static/img/menu1.png"),
@@ -226,10 +136,34 @@ export default class extends Vue {
     navSwiperOptions: any = {
         slidesPerView: 7,
     }
+    navSwiperOptions1: any = {
+        direction: 'vertical',
+        height: 30,
+        slidesPerView: 1,
+    }
 
     created() {
         this.getUnread();
         this.getTagList();
+        this.getAds();
+        this.getAnn();
+    }
+
+    // 跳转到应用
+    toApplication(name: string | number) {
+        this.$router.push("/application?tag=" + name);
+    }
+
+    // 获取广告
+    async getAds() {
+        const res: any = await this.$http.post("Ads/index", { place: 1 });
+        if (res.code === 200) this.adsList = res.result;
+    }
+
+    // 获取公告
+    async getAnn() {
+        const res: any = await this.$http.post("Announcement/index", { number: 3 });
+        if (res.code === 200) this.announcementList = res.result;
     }
 
     // 获取未读消息
@@ -242,6 +176,7 @@ export default class extends Vue {
     async getTagList() {
         const res: any = await this.$http.post("Tag/index");
         if (res.code === 200) this.tagList = res.result;
+        this.$nextTick(() => this.navFlag = true);
     }
 }
 </script>

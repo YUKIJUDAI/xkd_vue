@@ -12,21 +12,23 @@
                 <van-tab title="心得分享">
                     <div class="college-tabs1">
                         <ul class="college-tabs1-list">
-                            <li>
-                                <div class="college-tabs1-list-left">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="college-tabs1-list-right">
-                                    <p>打破固有思维，换种…</p>
-                                    <p>时长：60分钟</p>
-                                    <div class="college-tabs1-user">
-                                        <img src="" alt="" />
-                                        <span>小老师</span>
+                            <template v-for="(item,i) in shareList">
+                                <li :key="i">
+                                    <div class="college-tabs1-list-left">
+                                        <img :src="item.img | qnImg" alt="" />
                                     </div>
-                                    <div class="college-tabs1-btn">回看教程</div>
-                                </div>
-                            </li>
-                            <hr />
+                                    <div class="college-tabs1-list-right">
+                                        <p>{{item.title}}</p>
+                                        <p>时长：{{item.length}}分钟</p>
+                                        <div class="college-tabs1-user">
+                                            <img src="" alt="" />
+                                            <span>小老师</span>
+                                        </div>
+                                        <div class="college-tabs1-btn">回看教程</div>
+                                    </div>
+                                </li>
+                                <hr />
+                            </template>
                         </ul>
                         <ScrollBack></ScrollBack>
                     </div>
@@ -34,23 +36,23 @@
                 <van-tab title="高级教程">
                     <div class="college-tabs2">
                         <ul class="college-tabs1-list">
-                            <li>
+                            <li v-for="(item,i) in collegeList" :key="i">
                                 <div class="college-tabs1-list-left">
-                                    <img src="" alt="" />
+                                    <img :src="item.img | qnImg" alt="" />
                                 </div>
                                 <div class="college-tabs1-list-right">
-                                    <p>抖音新手实操指南</p>
-                                    <p>介绍抖音基础资料完善，素材准备 视频制作</p>
-                                    <div class="college-tabs1-img">1340人已学习</div>
+                                    <p>{{item.title}}</p>
+                                    <p>{{item.description}}</p>
+                                    <div class="college-tabs1-img">{{item.sort}}人已学习</div>
                                 </div>
                             </li>
                         </ul>
                         <ScrollBack></ScrollBack>
                     </div>
-                    </van-tab>
-                </van-tabs>
+                </van-tab>
+            </van-tabs>
         </div>
-        <Footer :selectedTab="1"></Footer>
+        <Footer :selectTab="1"></Footer>
     </div>
 </template>
 
@@ -60,8 +62,29 @@ import { Component, Vue } from 'vue-property-decorator';
 import ScrollBack from "@/components/scrollBack.vue";
 import Footer from "@/layout/footer.vue";
 
-@Component
-export default class extends Vue {
+@Component({
+    components: { ScrollBack, Footer }
+})
+export default class College extends Vue {
+
+
+    shareList: Array<{ [propsName: string]: any }> = [];
+    collegeList: Array<{ [propsName: string]: any }> = [];
+
+    created() {
+        this.getShare();
+        this.getCollege();
+    }
+    // 获取高级教程
+    async getCollege() {
+        const res: any = await this.$http.post("College/index");
+        res.code === 200 && (this.collegeList = res.result);
+    }
+    // 获取心得分享
+    async getShare() {
+        const res: any = await this.$http.post("/College/share");
+        res.code === 200 && (this.shareList = res.result);
+    }
 
 }
 </script>

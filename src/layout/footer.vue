@@ -1,5 +1,5 @@
 <template>
-    <van-tabbar @change="footerChange">
+    <van-tabbar @change="footerChange" :value="selectTab">
         <van-tabbar-item>
             <span>首页</span>
             <template #icon="props">
@@ -28,13 +28,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class extends Vue {
+
+    @Prop()
+    readonly selectTab!: number;
+
     // 切换导航条
     footerChange(val: number) {
-        this.$router.push(["", "/college"][val]);
+        this.$router.push(["", "/college", "", "/me"][val]);
     }
 }
 </script>

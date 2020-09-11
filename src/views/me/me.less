@@ -1,0 +1,248 @@
+.me {
+    padding-bottom: 50px;
+    .me-head {
+        background: url("~@/static/img/me-bg.png") no-repeat top center;
+        background-size: 100%;
+        padding-bottom: 1rem;
+        .me-nav {
+            padding-top: 0.34rem;
+        }
+        .me-nav-message {
+            position: relative;
+            margin-left: 0.44rem;
+            img {
+                width: 0.34rem;
+            }
+            p {
+                position: absolute;
+                left: 0.26rem;
+                top: 0;
+                width: 0.16rem;
+                height: 0.16rem;
+                border-radius: 0.08rem;
+                background: #fe3c30;
+            }
+        }
+        .me-nav-customer {
+            margin-right: 0.32rem;
+            img {
+                width: 0.3rem;
+            }
+        }
+        .me-nav-config {
+            margin-right: 0.4rem;
+            img {
+                width: 0.34rem;
+            }
+        }
+        .me-user {
+            margin: 0.56rem 0.7rem 0 0.16rem;
+        }
+        .me-user-left {
+            width: 1.36rem;
+            height: 1.36rem;
+            background: #d8d8d8;
+            border: 0.06rem solid #ffffff;
+            border-radius: 0.68rem;
+            img {
+                width: 1.24rem;
+                height: 1.24rem;
+            }
+        }
+        .me-user-center {
+            margin-top: 0.14rem;
+            margin-left: 0.2rem;
+            color: #fff;
+            font-size: 0.22rem;
+            p {
+                &:first-child {
+                    font-size: 0.36rem;
+                }
+            }
+        }
+        .me-user-right {
+            margin-top: 0.28rem;
+            text-align: center;
+            color: #fff;
+            font-size: 0.22px;
+            img {
+                margin-top: 0.14rem;
+                width: 0.5rem;
+            }
+        }
+    }
+    .me-wallet {
+        height: 2.82rem;
+        background-color: #f5f6f9;
+        position: relative;
+    }
+    .me-wallet-main {
+        position: absolute;
+        top: -0.7rem;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 6.68rem;
+        height: 3.32rem;
+        background-color: #686461;
+        border-radius: 0.1rem 0.1rem 0px 0px;
+        font-size: 0.22rem;
+        color: #f8dfae;
+        .me-trapezoid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4.46rem;
+            height: 0.7rem;
+            line-height: 0.7rem;
+            background: linear-gradient(90deg, #555452 0%, #4b4a48 100%);
+            border-radius: 0.1rem 0px 0px 0px;
+            color: #f8dfae;
+            text-indent: 0.26rem;
+        }
+        .me-vip {
+            text-align: right;
+            height: 0.7rem;
+            line-height: 0.7rem;
+            img {
+                margin-left: 0.2rem;
+                margin-right: 0.26rem;
+                width: 0.24rem;
+                height: 0.24rem;
+                vertical-align: -2px;
+            }
+        }
+        .me-withdraw {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.2rem 0.26rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid rgba(248, 223, 174, 0.32);
+            .me-withdraw-left {
+                p {
+                    &:nth-child(2) {
+                        margin-top: 0.12rem;
+                        font-size: 0.4rem;
+                    }
+                }
+            }
+            .me-withdraw-right {
+                text-align: center;
+                width: 1.28rem;
+                height: 0.5rem;
+                line-height: 0.5rem;
+                border-radius: 2px;
+                border: 1px solid #f8dfae;
+            }
+        }
+    }
+    .me-income {
+        margin: 0.28rem 0.26rem 0;
+        ul {
+            display: flex;
+            justify-content: space-between;
+
+            li {
+                text-align: center;
+                width: 30%;
+                border-right: 1px solid rgba(248, 223, 174, 0.32);
+                &:nth-child(2) {
+                    width: 40%;
+                }
+                &:nth-child(3) {
+                    border-right: none;
+                }
+                p {
+                    &:nth-child(1) {
+                        color: #c0ad88;
+                        font-size: 0.24rem;
+                        margin-bottom: 0.04rem;
+                    }
+                }
+            }
+        }
+    }
+    .me-team {
+        padding: 0.32rem 0.4rem;
+        .me-team-top {
+            font-size: 0.24rem;
+            color: #999;
+            border-bottom: 1px solid #f1f1f1;
+            img {
+                width: 0.56rem;
+                height: 0.56rem;
+                margin-right: 0.12rem;
+                vertical-align: bottom;
+            }
+            p {
+                &:nth-child(2) {
+                    margin-top: 0.12rem;
+                    padding-bottom: 0.3rem;
+                    height: 0.86rem;
+                    line-height: 0.56rem;
+                    font-size: 0.28rem;
+                    color: #030303;
+                }
+            }
+        }
+        .me-team-bottom {
+            ul {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 0.36rem;
+            }
+            li {
+                text-align: center;
+            }
+            img {
+                width: auto;
+                height: 0.46rem;
+            }
+            p {
+                margin-top: 0.12rem;
+            }
+        }
+    }
+    .me-openvip {
+        margin: 0 0.36rem;
+        height: 1.6rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #f1f1f1;
+        .me-vip-left, .me-vip-right {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            p {
+                text-align: left;
+                &:nth-child(2){
+                    font-size: 0.22rem;
+                    color: #999;
+                    margin-top: 0.1rem;
+                }
+            }
+        }
+        img {
+            vertical-align: middle;
+            width: auto;
+            height: 0.4rem;
+            margin-right: 0.2rem;
+            margin-top: 0.2rem;
+        }
+    }
+    .me-list {
+        margin: 0 0.36rem;
+        li {
+            height: 0.9rem;
+            line-height: 0.9rem;
+            border-bottom: 1px solid #f1f1f1;
+            img {
+                width: auto;
+                height: 0.4rem;
+                margin-right: 0.24rem;
+                vertical-align: middle;
+            }
+        }
+    }
+}

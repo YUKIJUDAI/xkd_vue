@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueAwesomeSwiper from "vue-awesome-swiper";
-import { Toast, Dialog, Tab, Tabs, PullRefresh, Swipe, SwipeItem, Tabbar, TabbarItem, List } from "vant";
+import { Toast, Dialog, Tab, Tabs, PullRefresh, Swipe, SwipeItem, Tabbar, TabbarItem, List, Uploader, Search } from "vant";
 
 import App from "./App.vue";
 import router from "@/router/index";
@@ -36,6 +36,8 @@ Vue.use(SwipeItem);
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(List);
+Vue.use(Uploader);
+Vue.use(Search);
 
 new Vue({
     router,

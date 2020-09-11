@@ -37,7 +37,7 @@ interface LoginInfo {
 @Component({
     components: { CodeInput, Back }
 })
-export default class extends Vue {
+export default class Forget extends Vue {
     loginInfo: LoginInfo = { phone: "", smscode: "", password: "" };
 
     async forget() {

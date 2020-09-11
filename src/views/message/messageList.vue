@@ -15,7 +15,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
-export default class extends Vue {
+export default class MessageList extends Vue {
     @Prop(Number)
     readonly type!: string;
 

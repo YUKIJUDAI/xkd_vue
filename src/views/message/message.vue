@@ -33,7 +33,7 @@ import MessageList from "./messageList.vue";
 @Component({
     components: { MessageList }
 })
-export default class extends Vue {
+export default class Message extends Vue {
     // 全部已读
     async allunread(type: number) {
         const res: any = await this.$http.post("Message/allunread", { type });

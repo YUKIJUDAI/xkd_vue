@@ -35,7 +35,7 @@ import ScrollBack from "@/components/scrollBack.vue";
 import Footer from "@/layout/footer.vue";
 
 @Component
-export default class extends Vue {
+export default class Detail extends Vue {
 
 }
 </script>

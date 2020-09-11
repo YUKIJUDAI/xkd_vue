@@ -13,7 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class extends Vue {
+export default class Detail extends Vue {
 
     id: string = this.$route.params.id;
 
