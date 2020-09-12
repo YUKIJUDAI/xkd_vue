@@ -23,7 +23,7 @@
         <van-dialog v-model="show" :showConfirmButton="false" closeOnClickOverlay class="dy-dialog">
             <div class="dy-dialog-title">抖音APP扫码授权</div>
             <div class="color666 font14">截图进入抖音APP扫码授权</div>
-            <img src="" alt="">
+            <img :src="pic_src" alt="">
             <div class="info">
                 <p class="color999">授权抖音号您可:</p>
                 <ul>
@@ -51,7 +51,17 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class Add extends Vue {
     show: boolean = false;
-}
+    pic_src: any = "";
+
+    mounted() {
+        this.getCode();
+    }
+
+    async getCode() {
+        const res: any = await this.$http.post("douyin/code");
+        this.pic_src = res;
+    }
+}    
 </script>
 
 <style lang="less" scoped>
