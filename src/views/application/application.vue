@@ -37,7 +37,7 @@ export default class Application extends Vue {
     // 搜索内容
     keyword: string = "";
     // 标签
-    tag: string | (string | null)[] = this.$route.query.tag;
+    tag: string | (string | null)[] = this.$route.query.tag || '0';
     tagList: Array<{ [propsName: string]: any }> = [];
 
     created() {

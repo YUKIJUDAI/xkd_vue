@@ -38,7 +38,7 @@ export default class extends Vue {
 
     // 切换导航条
     footerChange(val: number) {
-        this.$router.push(["", "/college", "", "/me"][val]);
+        this.$router.push(["/", "/college", "", "/me"][val]);
     }
 }
 </script>

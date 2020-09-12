@@ -3,10 +3,10 @@
         <van-list v-model="isLoading" :finished="finished" success-text="刷新成功" @load="getGoods">
             <div class="goods-list clearfix" v-for="(item,i) in goodsList" :key="i">
                 <div class="goods-list-left fl">
-                    <img src="" alt="">
+                    <img :src="item.logo | qnImg" alt="">
                 </div>
                 <div class="goods-list-center fl">
-                    <p>漫画头像生成器</p>
+                    <p>{{item.name}}</p>
                     <p>小测评</p>
                 </div>
                 <div class="goods-list-right fr">

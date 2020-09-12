@@ -1,37 +1,43 @@
 <template>
     <div class="college">
         <div class="college-carousel">
-            <swiper :autoplay="3000" indicator-color="white">
-                <swiper-slide class="college-swiper-slide">slider1</swiper-slide>
-                <swiper-slide class="college-swiper-slide">slider2</swiper-slide>
-                <swiper-slide class="college-swiper-slide">slider3</swiper-slide>
-            </swiper>
+            <van-swipe>
+                <van-swipe-item v-for="(item,i) in adsList" :key="i">
+                    <div class="college-swiper-slide">
+                        <a :href="item.jump_link" target="_blank">
+                            <img :src="item.img | qnImg" alt="">
+                        </a>
+                    </div>
+                </van-swipe-item>
+            </van-swipe>
         </div>
         <div class="college-tabs">
             <van-tabs color="#999" title-active-color="#FCD000" line-width="64">
                 <van-tab title="心得分享">
-                    <div class="college-tabs1">
-                        <ul class="college-tabs1-list">
-                            <template v-for="(item,i) in shareList">
-                                <li :key="i">
-                                    <div class="college-tabs1-list-left">
-                                        <img :src="item.img | qnImg" alt="" />
-                                    </div>
-                                    <div class="college-tabs1-list-right">
-                                        <p>{{item.title}}</p>
-                                        <p>时长：{{item.length}}分钟</p>
-                                        <div class="college-tabs1-user">
-                                            <img src="" alt="" />
-                                            <span>小老师</span>
+                    <van-list v-model="isLoading1" :finished="finished1" success-text="刷新成功" @load="getShare">
+                        <div class="college-tabs1">
+                            <ul class="college-tabs1-list">
+                                <template v-for="(item,i) in shareList">
+                                    <li :key="i">
+                                        <div class="college-tabs1-list-left">
+                                            <img :src="item.img | qnImg" alt="" />
                                         </div>
-                                        <div class="college-tabs1-btn">回看教程</div>
-                                    </div>
-                                </li>
-                                <hr />
-                            </template>
-                        </ul>
-                        <ScrollBack></ScrollBack>
-                    </div>
+                                        <div class="college-tabs1-list-right">
+                                            <p>{{item.title}}</p>
+                                            <p>时长：{{item.length}}分钟</p>
+                                            <div class="college-tabs1-user">
+                                                <img :src="item.avatar | qnImg" alt="" />
+                                                <span>{{item.nickname}}</span>
+                                            </div>
+                                            <div class="college-tabs1-btn"><a :href="item.link" target="blank">回看教程</a></div>
+                                        </div>
+                                    </li>
+                                    <hr />
+                                </template>
+                            </ul>
+                            <ScrollBack></ScrollBack>
+                        </div>
+                    </van-list>
                 </van-tab>
                 <van-tab title="高级教程">
                     <div class="college-tabs2">
@@ -43,7 +49,7 @@
                                 <div class="college-tabs1-list-right">
                                     <p>{{item.title}}</p>
                                     <p>{{item.description}}</p>
-                                    <div class="college-tabs1-img">{{item.sort}}人已学习</div>
+                                    <div class="college-tabs1-img">{{item.number}}人已学习</div>
                                 </div>
                             </li>
                         </ul>
@@ -67,23 +73,65 @@ import Footer from "@/layout/footer.vue";
 })
 export default class College extends Vue {
 
+    isLoading1: boolean = false;
+    finished1: boolean = false;
+    isLoading2: boolean = false;
+    finished2: boolean = false;
 
-    shareList: Array<{ [propsName: string]: any }> = [];
-    collegeList: Array<{ [propsName: string]: any }> = [];
+    page1: number = 1;
+    page2: number = 1;
+
+    shareList: Array<{ [propsName: string]: any }> = []; // 分享列表
+    collegeList: Array<{ [propsName: string]: any }> = []; // 课程列表
+    adsList: Array<{ [propsName: string]: any }> = []; // 广告列表
 
     created() {
         this.getShare();
         this.getCollege();
+        this.getAds();
     }
+
+    // 获取广告
+    async getAds() {
+        const res: any = await this.$http.post("Ads/index", { place: 1 });
+        if (res.code === 200) this.adsList = res.result;
+    }
+
     // 获取高级教程
     async getCollege() {
-        const res: any = await this.$http.post("College/index");
-        res.code === 200 && (this.collegeList = res.result);
+        this.isLoading2 = true;
+        const res: any = await this.$http.post("College/index", { page: this.page2 });
+        this.isLoading2 = false;
+        if (res.code === 200) {
+            if (this.page2 === 1) {
+                this.collegeList = res.result.list;
+            } else {
+                this.collegeList = [...this.collegeList, ...res.result.list];
+            }
+            if (res.result.list.length === 10) {
+                this.page2++;
+            } else {
+                this.finished2 = true;
+            }
+        }
     }
     // 获取心得分享
     async getShare() {
-        const res: any = await this.$http.post("/College/share");
-        res.code === 200 && (this.shareList = res.result);
+        this.isLoading1 = true;
+        const res: any = await this.$http.post("/College/share", { page: this.page1 });
+        this.isLoading1 = false;
+        if (res.code === 200) {
+            if (this.page1 === 1) {
+                this.shareList = res.result.list;
+            } else {
+                this.shareList = [...this.shareList, ...res.result.list];
+            }
+            if (res.result.list.length === 10) {
+                this.page1++;
+            } else {
+                this.finished1 = true;
+            }
+        }
     }
 
 }

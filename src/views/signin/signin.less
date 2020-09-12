@@ -1,0 +1,140 @@
+.signin {
+    .signin-top {
+        background: url("~@/static/img/signin-bg.png") no-repeat;
+        background-size: 100%;
+        position: relative;
+        padding-bottom: 0.1rem;
+        .rule {
+            position: absolute;
+            top: 0;
+            right: 0.24rem;
+            width: 1.08rem;
+            height: 0.44rem;
+            line-height: 0.44rem;
+            background: #ffd17d;
+            border-radius: 0px 0px 0.08rem 0.08rem;
+            color: #c4710e;
+            font-size: 0.22rem;
+            text-align: center;
+        }
+        .rule + p {
+            padding: 0.76rem 0.26rem 0.6rem;
+            color: #fff;
+            font-size: 0.36rem;
+        }
+    }
+    .signin-panel {
+        margin: 0.24rem 0.28rem 0.4rem;
+        padding: 0.32rem 0.26rem 0.28rem;
+        background: #ffffff;
+        border-radius: 0.08rem;
+        .mask {
+            opacity: 0.4;
+        }
+        .double {
+            width: 2.76rem;
+            img {
+                width: 0.78rem;
+            }
+        }
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            li {
+                position: relative;
+                width: 1.28rem;
+                height: 1.6rem;
+                margin-left: 0.3rem;
+                margin-bottom: 0.24rem;
+                text-align: center;
+                border: 1px solid #fed561;
+                border-radius: 0.08rem;
+                .checked {
+                    position: absolute;
+                    top: 0.6rem;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    width: 0.5rem;
+                    height: 0.36rem;
+                    z-index: 2;
+                }
+                p {
+                    width: 100%;
+                    height: 0.36rem;
+                    background: #fed561;
+                    color: #fff;
+                }
+                div {
+                    width: 100%;
+                    height: 1.2rem;
+                    background: #ffffff;
+                    img {
+                        width: 0.64rem;
+                        height: 0.64rem;
+                        margin-top: 0.1rem;
+                    }
+                    span {
+                        font-size: 0.24rem;
+                        color: #ba9325;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .sign-in {
+        width: 6.16rem;
+        height: 0.82rem;
+        line-height: 0.82rem;
+        background: linear-gradient(180deg, #fea832 0%, #fe9300 100%);
+        border-radius: 0.42rem;
+        margin: 0.12rem auto 0;
+        text-align: center;
+        font-size: 0.3rem;
+        color: #fff;
+    }
+    .signin-integral {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0.24rem 0.28rem 0.4rem;
+        padding: 0.4rem 0.4rem 0.32rem;
+        background: #ffffff;
+        border-radius: 0.08rem;
+        .lottery,
+        .mall {
+            width: 2.68rem;
+            height: 1.7rem;
+            p {
+                margin-top: 0.36rem;
+                margin-left: 0.28rem;
+                color: #fff;
+                font-size: 0.36rem;
+            }
+            span {
+                display: block;
+                margin-top: 0.3rem;
+                margin-left: 0.28rem;
+                color: #fff;
+                font-size: 0.24rem;
+            }
+        }
+        .lottery {
+            background: url("~@/static/img/mall.png") no-repeat;
+            background-size: 100%;
+        }
+        .mall {
+            background: url("~@/static/img/lottery.png") no-repeat;
+            background-size: 100%;
+        }
+    }
+    .more {
+        margin: 0.4rem 0.26rem 0.24rem;
+        font-weight: bold;
+    }
+    .signin-goods {
+        margin: 0 0.26rem;
+    }
+}

@@ -22,10 +22,10 @@
                     <p>手机号：15356120589</p>
                     <p>微信：wxid_dhefhf</p>
                 </div>
-                <div class="me-user-right fr">
+                <router-link to="/signin" class="me-user-right fr">
                     <p>签到有礼</p>
                     <img src="@/static/img/me-signin.png" alt="">
-                </div>
+                </router-link>
             </div>
         </div>
         <div class="me-wallet">

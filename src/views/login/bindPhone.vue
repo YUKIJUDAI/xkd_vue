@@ -5,7 +5,7 @@
             <p>微信昵称</p>
         </div>
         <div class="login-form">
-            <LoginByCode></LoginByCode>
+            <LoginByCode ref="loginWayTemp"></LoginByCode>
         </div>
         <div class="login-form">
             <div class="login-submit">
@@ -33,9 +33,17 @@ import LoginByCode from "./loginByCode.vue";
 })
 export default class BindPhone extends Vue {
 
-    // 绑定手机
-    bindPhone() {
+    bindInfo: { [PropsName: string]: any } = { phone: "", openid: "", smscode: "", invitecode: "" };
 
+    // 绑定手机
+    async bindPhone() {
+        const data = Object.assign(this.bindInfo, (this.$refs.loginWayTemp as any).loginInfo);
+        const res: any = await this.$http.post("User/Register/bind", data);
+        if (res.code === 200) {
+            this.$router.push("/bind-status?type=1");
+        } else {
+            this.$router.push("/bind-status?type=0");
+        }
     }
 }
 </script>

@@ -3,6 +3,11 @@ import Router from "vue-router";
 
 vue.use(Router);
 
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location: any) {
+    return (originalPush.call(this, location) as any).catch((err:any) => err);
+};
+
 const routes = [
     {
         path: "/login",
@@ -30,7 +35,7 @@ const routes = [
         meta: { title: "绑定状态" },
     },
     {
-        path: "",
+        path: "/",
         component: () => import("@/views/home/home.vue"),
         meta: { title: "首页" },
     },
@@ -88,6 +93,11 @@ const routes = [
         path: "/application",
         component: () => import("@/views/application/application.vue"),
         meta: { title: "系统设置" },
+    },
+    {
+        path: "/signin",
+        component: () => import("@/views/signin/signin.vue"),
+        meta: { title: "签到" },
     },
 ];
 

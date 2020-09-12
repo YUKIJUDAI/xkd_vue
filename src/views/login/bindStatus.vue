@@ -1,11 +1,11 @@
 <template>
     <div class="login">
-        <div class="bing-status">
+        <div class="bing-status" v-show="type === '1'">
             <img src="@/static/img/success.png" alt="">
             <p>绑定成功</p>
             <p class="font12 color999">请返回小科抖平台列表查看即可</p>
         </div>
-        <div class="bing-status">
+        <div class="bing-status" v-show="type === '0'">
             <img src="@/static/img/fail.png" alt="">
             <p>绑定失败</p>
             <p class="font12 color999">请返回小科抖平台列表查看即可</p>
@@ -15,10 +15,10 @@
             <div class="good-list-main">
                 <div class="goods-list clearfix" v-for="(item,i) in goodsList" :key="i">
                     <div class="goods-list-left fl">
-                        <img src="" alt="">
+                        <img :src="item.logo | qnImg" alt="">
                     </div>
                     <div class="goods-list-center fl">
-                        <p>漫画头像生成器</p>
+                        <p>{{item.name}}</p>
                         <p>小测评</p>
                     </div>
                     <div class="goods-list-right fr">
@@ -36,6 +36,8 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class extends Vue {
     goodsList: Array<{ [propsName: string]: any }> = [];
+
+    type: string | (string | null)[] = this.$route.query.type;
 
     page: number = 1;
     limit: number = 3;

@@ -60,7 +60,7 @@ export default class Login extends Vue {
         if (res.code === 200) {
             this.$toast.success(res.msg);
             this.$store.commit("SET_USER_INFO", res.result)
-            this.$router.push("");
+            this.$router.push("/");
         } else {
             this.$toast({ type: "fail", message: res.msg });
         }
