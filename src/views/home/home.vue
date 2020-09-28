@@ -42,10 +42,10 @@
         <!-- menu -->
         <div class="home-menu">
             <ul>
-                <li v-for="(item,i) in menulist" :key="i">
+                <router-link :to="item.router" tag="li" v-for="(item,i) in menulist" :key="i">
                     <img :src="item.src" alt="" />
                     <p>{{item.title}}</p>
-                </li>
+                </router-link>
             </ul>
         </div>
         <!-- announcement -->
@@ -97,6 +97,7 @@ import Recommend from "@/components/recommend.vue";
 interface MenuType {
     src: string;
     title: string;
+    router?: string;
 }
 
 @Component({
@@ -115,22 +116,27 @@ export default class Home extends Vue {
         {
             src: require("@/static/img/menu1.png"),
             title: "邀请好友",
+            router: ""
         },
         {
             src: require("@/static/img/menu2.png"),
             title: "绑定抖音",
+            router: "/dylist",
         },
         {
             src: require("@/static/img/menu3.png"),
             title: "收益报表",
+            router: ""
         },
         {
             src: require("@/static/img/menu4.png"),
             title: "爆单分析",
+            router: ""
         },
         {
             src: require("@/static/img/menu5.png"),
             title: "签到有礼",
+            router: "/signin"
         },
     ];
     navSwiperOptions: any = {

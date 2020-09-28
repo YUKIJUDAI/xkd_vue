@@ -4,18 +4,18 @@
         <div class="home-recommend">
             <div class="home-title clearfix">
                 <p class="fl">{{title}}</p>
-                <span class="fr">
+                <router-link tag="span" to="/application" class="fr">
                     全部<i class="right"></i>
-                </span>
+                </router-link>
             </div>
             <div class="home-recommend-list">
                 <ul>
-                    <li>
+                    <li v-for="(item,i) in list" :key="i">
                         <div class="home-recommend-list-left">
-                            <img src="" alt="" />
+                            <img :src="item.logo | qnImg" alt="" />
                         </div>
                         <div class="home-recommend-list-center">
-                            <p>漫画头像生成器</p>
+                            <p>{{item.name}}</p>
                             <p>
                                 收益：自推<span class="color666">90%</span>
                             </p>
@@ -24,7 +24,7 @@
                             </p>
                         </div>
                         <div class="home-recommend-list-right">
-                            <img src="" alt="" />
+                            <img src="@/static/img/ewm.png" alt="" />
                             <p>去推广</p>
                         </div>
                     </li>
@@ -63,7 +63,7 @@ export default class extends Vue {
     async getGoods() {
         const data = { is_free: this.is_free, is_new: this.is_new, is_hot: this.is_hot, tag: 0, sort: 1, page: this.page, limit: this.limit };
         const res: any = await this.$http.post("Goods/index", data);
-        res.code === 200 && (this.list = res.result)
+        res.code === 200 && (this.list = res.result.list);
     }
 
 }

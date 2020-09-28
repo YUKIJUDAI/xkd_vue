@@ -21,8 +21,10 @@ export default class Setting extends Vue {
 
     exit() {
         this.$dialog.confirm({
-            message: "您确定要退出登录吗"
-        })
+            message: "您确定要退出登录吗？"
+        }).then(res => {
+            this.$router.replace("/login");
+        });
     }
 }
 </script>
