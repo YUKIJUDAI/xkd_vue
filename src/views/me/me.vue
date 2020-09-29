@@ -104,7 +104,7 @@
         <div style="height:0.2rem;background:#f5f6f9"></div>
         <div class="me-list">
             <ul>
-                <router-link to="" tag="li">
+                <router-link to="/college" tag="li">
                     <p><img src="@/static/img/me-list1.png" alt="">学习中心</p>
                 </router-link>
                 <router-link to="" tag="li">
