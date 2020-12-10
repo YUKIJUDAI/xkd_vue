@@ -1,26 +1,18 @@
 <template>
     <div class="goods">
         <van-list v-model="isLoading" :finished="finished" success-text="刷新成功" @load="getGoods">
-            <div class="goods-list clearfix" v-for="(item,i) in goodsList" :key="i">
-                <div class="goods-list-left fl">
-                    <img :src="item.logo | qnImg" alt="">
-                </div>
-                <div class="goods-list-center fl">
-                    <p>{{item.name}}</p>
-                    <p>小测评</p>
-                </div>
-                <div class="goods-list-right fr">
-                    <div class="xkd-btn-yellow">查看</div>
-                </div>
-            </div>
+            <GoodsList :goodsList="goodsList"></GoodsList>
         </van-list>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import GoodsList from "./goods-list.vue";
 
-@Component
+@Component({
+    components: { GoodsList }
+})
 export default class Goods extends Vue {
 
     @Prop()
@@ -51,7 +43,7 @@ export default class Goods extends Vue {
     goodsList: Array<{ [propsName: string]: any }> = [];
 
     async getGoods() {
-        const data = { is_free: 2, is_new: 2, is_hot: 2, tag: this.tag, keyword: this.keyword, page: this.page, limit: this.limit, sort: this.sort };
+        const data = { is_free: 0, is_new: 0, is_hot: 0, tag: this.tag, keyword: this.keyword, page: this.page, limit: this.limit, sort: this.sort };
         const res: any = await this.$http.post("Goods/index", data);
         if (res.code === 200) {
             if (this.page === 1) {
@@ -59,7 +51,7 @@ export default class Goods extends Vue {
             } else {
                 this.goodsList = [...this.goodsList, ...res.result.list];
             }
-            if (res.result.list.length === 10) {
+            if (this.goodsList.length < res.result.total) {
                 this.page++;
             } else {
                 this.finished = true;

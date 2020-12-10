@@ -1,23 +1,23 @@
 <template>
     <div class="college-detail">
-        <div class="college-carousel">
-            <div class="college-swiper-slide">slider1</div>
+        <div class="college-player">
+            <vueMiniPlayer :video="video" v-if="videoFlag" />
         </div>
         <div class="college-detail-main">
-            <div class="college-detail-nav">课程介绍</div>
-            <div class="college-detail-title">抖音新手实操指南</div>
-            <div class="college-detail-title college-detail-info">介绍抖音基础资料完善、素材准备、视频制作、发布。如果刷垂直和运营中遇到的那些坑，一个优秀视频具备的维度。</div>
-            <div class="college-detail-class">共6课时/已更新6课时</div>
+            <div class="college-detail-nav color333">课程介绍</div>
+            <div class="college-detail-title color333">{{videoInfo.title}}</div>
+            <div class="college-detail-title college-detail-info">{{videoInfo.description}}</div>
+            <div class="college-detail-class">共{{videoInfo.class}}课时/已更新{{videoInfo.number}}课时</div>
             <div>
                 <ul class="college-detail-list">
                     <hr />
-                    <li>
+                    <li v-for="(item,i) in videoList" :key="i">
                         <div class="college-detail-list-left">
-                            <p>01.小科抖介绍</p>
-                            <p>时长：6分42秒</p>
+                            <p class="color333">{{i + 1}}.{{item.title}}</p>
+                            <p>时长：{{item.length}}</p>
                         </div>
-                        <div class="college-detail-list-right">
-                            <img src="" alt="" />
+                        <div class="college-detail-list-right" @click="changeVideoOrgin(i)">
+                            <img src="@/static/img/video.png" alt="" />
                         </div>
                     </li>
                 </ul>
@@ -31,56 +31,58 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
+import { qnUrl } from "@/config/index";
 import ScrollBack from "@/components/scrollBack.vue";
 import Footer from "@/layout/footer.vue";
 
-@Component
+@Component({
+    components: { ScrollBack }
+})
 export default class Detail extends Vue {
+    // 视频配置
+    video = {
+        url: "",
+        muted: false,
+    };
+    // 视频信息
+    videoInfo: { [propsName: string]: any } = {};
+    // 视频列表
+    videoList: Array<{ [propsName: string]: any }> = [];
+    // 当前正在播放的视频
+    index: number = 0;
+    // 重新插件组件
+    videoFlag: boolean = true;
 
+    created() {
+        this.getVideoList();
+    }
+
+    async getVideoList() {
+        const res: any = await this.$http.post("College/video", { id: this.$route.params.id });
+        if (res.code) {
+            this.videoInfo = res.result.info;
+            this.videoList = res.result.video;
+            res.result.video && res.result.video[this.index] && (this.video.url = qnUrl + res.result.video[this.index].link);
+        }
+    }
+
+    // 更换视频
+    changeVideoOrgin(index: number) {
+        if (index === this.index) return;
+        this.index = index;
+        if (!this.videoList[this.index]) return;
+        this.videoFlag = false;
+        this.video.url = qnUrl + this.videoList[this.index].link;
+        this.$nextTick(() => {
+            this.videoFlag = true;
+            window.scroll(0, 0);
+            this.$toast("开始播放");
+        })
+
+    }
 }
 </script>
 
 <style lang="less" scoped>
 @import url("./college.less");
 </style>
-
-import React, { Component } from "react";
-
-import ScrollBack from "../common/scrollBack";
-import Footer from "../layout/footer";
-
-import "./college.less";
-
-export default class Detail extends Component {
-    render() {
-        return (
-            <div class="college-detail">
-                <div class="college-carousel">
-                    <div class="college-swiper-slide">slider1</div>
-                </div>
-                <div class="college-detail-main">
-                    <div class="college-detail-nav">课程介绍</div>
-                    <div class="college-detail-title">抖音新手实操指南</div>
-                    <div class="college-detail-title college-detail-info">介绍抖音基础资料完善、素材准备、视频制作、发布。如果刷垂直和运营中遇到的那些坑，一个优秀视频具备的维度。</div>
-                    <div class="college-detail-class">共6课时/已更新6课时</div>
-                    <div>
-                        <ul class="college-detail-list">
-                            <hr />
-                            <li>
-                                <div class="college-detail-list-left">
-                                    <p>01.小科抖介绍</p>
-                                    <p>时长：6分42秒</p>
-                                </div>
-                                <div class="college-detail-list-right">
-                                    <img src="" alt="" />
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <ScrollBack></ScrollBack>
-                <Footer selectedTab={1}></Footer>
-            </div>
-        );
-    }
-}

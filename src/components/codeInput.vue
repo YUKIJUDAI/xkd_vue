@@ -5,12 +5,12 @@
         <span class="xkd-input-label-code" @click="getCaptcha">
             {{isSending ? sendNumber : "获取验证码"}}
         </span>
-        <van-dialog v-model="show" class="code-dialog" :show-confirm-button="false">
+        <van-dialog v-model="show" class="code-dialog" :show-confirm-button="false" closeOnClickOverlay>
             <div class="code-img">
                 <img :src="codeImg" alt="" />
             </div>
             <div class="code-footer">
-                <input type="text" v-model="captcha" class="code-input" placeholder="请输入图片验证码" />
+                <input type="text" v-model="captcha" class="code-input color999" placeholder="请输入图片验证码"/>
                 <img src="~@/static/img/shuaxin.png" @click="getCaptcha" alt="" />
                 <div class="xkd-btn-primary" @click="getCode">确认</div>
             </div>
@@ -74,6 +74,7 @@ export default class CodeInput extends Vue {
                 }
             });
         } else {
+            this.getCaptcha();
             this.$toast.fail(res.msg);
         }
     };

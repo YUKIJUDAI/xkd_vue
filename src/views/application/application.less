@@ -1,42 +1,68 @@
 .application {
     .application-main {
-        margin: 0 0.3rem;
+        padding: 0 0.3rem;
+        background: #fff;
     }
     .xkd-check {
         margin-top: 0.2rem;
+        padding-top: 0.2rem;
+        background: #fff;
     }
     .xkd-check li {
         border-radius: 0.08rem;
     }
 }
 .goods {
-    margin-top: 0.16rem;
-    .goods-list {
-        padding: 0.24rem 0;
-        border-bottom: 1px solid #f5f5f5;
-        &:last-child {
-            border: none;
-        }
+    padding-top: 0.16rem;
+    background: #fff;
+}
+.goods-list {
+    padding: 0.24rem 0;
+    border-bottom: 1px solid #f5f5f5;
+    &:last-child {
+        border: none;
+    }
+    .leaderboard-num {
+        line-height: 1.2rem;
+        font-size: 0.36rem;
+        font-weight: bold;
+        width: 0.5rem;
+    }
+    .goods-list-left {
+        height: 1.2rem;
     }
     .goods-list-left {
         img {
-            width: 0.96rem;
-            height: 0.96rem;
+            width: 1.2rem;
+            height: 1.2rem;
         }
     }
     .goods-list-center {
         margin-left: 0.24rem;
         p {
-            &:nth-child(2) {
-                margin-top: 0.16rem;
-                text-align: center;
-                font-size: 0.22rem;
-                width: 0.84rem;
-                height: 0.32rem;
-                line-height: 0.32rem;
-                border-radius: 2px;
-                border: 1px solid #fc0000;
+            &:first-child {
+                font-size: 0.32rem;
+                color: #333;
+                margin-bottom: 0.08rem;
+                width: 50vw;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
+            &:nth-child(2) {
+                line-height: 0.32rem;
+                margin-top: 0.28rem;
+                font-size: 0.24rem;
+            }
+        }
+        .xingqu {
+            margin-right: 0.08rem;
+            display: inline-block;
+            background-size: cover;
+            width: 0.26rem;
+            height: 0.26rem;
+            border-radius: 0.13rem;
+            vertical-align: -0.04rem;
         }
     }
     .goods-list-right {

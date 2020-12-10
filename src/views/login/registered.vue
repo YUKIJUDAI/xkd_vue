@@ -8,9 +8,10 @@
             </div>
             <div class="xkd-input-label">
                 <span>密码</span>
-                <input type="password" v-model="loginInfo.password" class="xkd-input" placeholder="请输入密码" />
+                <input type="password" v-model="loginInfo.password" class="xkd-input" placehold
+                er="请输入密码" />
             </div>
-            <CodeInput type="reg" v-model="loginInfo.smscode" :phone="loginInfo.phone"></CodeInput>
+            <CodeInput type="reg" v-model="loginInfo.smscode" :phone="loginInfo.phone" @changeSmsCode="changeSmsCode"></CodeInput>
             <div class="xkd-input-label">
                 <span>邀请码</span>
                 <input type="text" v-model="loginInfo.invitecode" class="xkd-input" placeholder="请输入邀请码（选填）" />
@@ -25,7 +26,9 @@
             <div class="login-other">
                 <p>
                     注册即表示同意平台
-                    <span class="blue">服务协议、隐私权限</span>
+                    <span class="blue">
+                        <router-link tag="a" to="/single/2" class="blue">服务协议</router-link>、<router-link tag="a" to="/single/3" class="blue">隐私权限</router-link>
+                    </span>
                 </p>
             </div>
         </div>
@@ -51,6 +54,17 @@ interface LoginInfo {
 export default class Reistered extends Vue {
 
     loginInfo: LoginInfo = { phone: "", smscode: "", password: "", invitecode: "" };
+
+    created(): void {
+        if (this.$route.query.code) {
+            this.loginInfo.invitecode = this.$route.query.code as string;
+        }
+    }
+
+    changeSmsCode(smscode: string) {
+        this.loginInfo.smscode = smscode;
+    }
+
     // 点击注册
     async registered() {
         const res: any = await this.$http.post("User/Register/index", this.loginInfo);

@@ -6,7 +6,6 @@
                     <div class="message-tabs">
                         <div class="message-title">
                             <p>通知列表</p>
-                            <p @click="allunread(1)">全部已读</p>
                         </div>
                         <MessageList :type="1"></MessageList>
                     </div>
@@ -14,8 +13,8 @@
                 <van-tab title="消息">
                     <div class="message-tabs">
                         <div class="message-title">
-                            <p @click="allunread(2)">消息列表</p>
-                            <p>全部已读</p>
+                            <p>消息列表</p>
+                            <p @click="allunread(2)">全部已读</p>
                         </div>
                         <MessageList :type="2"></MessageList>
                     </div>

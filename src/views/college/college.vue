@@ -32,17 +32,15 @@
                                             <div class="college-tabs1-btn"><a :href="item.link" target="blank">回看教程</a></div>
                                         </div>
                                     </li>
-                                    <hr />
                                 </template>
                             </ul>
-                            <ScrollBack></ScrollBack>
                         </div>
                     </van-list>
                 </van-tab>
                 <van-tab title="高级教程">
                     <div class="college-tabs2">
                         <ul class="college-tabs1-list">
-                            <li v-for="(item,i) in collegeList" :key="i">
+                            <router-link v-for="(item,i) in collegeList" :key="i" tag="li" :to="'/college/detail/' + item.id">
                                 <div class="college-tabs1-list-left">
                                     <img :src="item.img | qnImg" alt="" />
                                 </div>
@@ -51,13 +49,13 @@
                                     <p>{{item.description}}</p>
                                     <div class="college-tabs1-img">{{item.number}}人已学习</div>
                                 </div>
-                            </li>
+                            </router-link>
                         </ul>
-                        <ScrollBack></ScrollBack>
                     </div>
                 </van-tab>
             </van-tabs>
         </div>
+        <ScrollBack></ScrollBack>
         <Footer :selectTab="1"></Footer>
     </div>
 </template>
@@ -93,7 +91,7 @@ export default class College extends Vue {
 
     // 获取广告
     async getAds() {
-        const res: any = await this.$http.post("Ads/index", { place: 1 });
+        const res: any = await this.$http.post("Ads/index", { place: 2 });
         if (res.code === 200) this.adsList = res.result;
     }
 
@@ -139,4 +137,11 @@ export default class College extends Vue {
 
 <style lang="less" scoped>
 @import url("./college.less");
+</style>
+<style lang="less">
+.college {
+    .van-tabs__nav--line {
+        padding-bottom: 0.2rem;
+    }
+}
 </style>

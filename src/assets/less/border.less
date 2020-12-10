@@ -1,0 +1,146 @@
+.border(
+    @borderWidth: 1px; 
+    @borderStyle: solid; 
+    @borderColor: #f1f1f1
+    ) {
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        width: 98%;
+        height: 98%;
+        top: 0;
+        left: 0;
+        transform-origin: left top;
+        -webkit-transform-origin: left top;
+        box-sizing: border-box;
+        pointer-events: none;
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+        &:before {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2.5) {
+        &:before {
+            width: 250%;
+            height: 250%;
+            -webkit-transform: scale(0.4);
+            transform: scale(0.4);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2.75) {
+        &:before {
+            width: 275%;
+            height: 275%;
+            -webkit-transform: scale(1 / 2.75);
+            transform: scale(1 / 2.75);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+        &:before {
+            width: 300%;
+            height: 300%;
+            transform: scale(1 / 3);
+            -webkit-transform: scale(1 / 3);
+        }
+    }
+    &:before {
+        border-width: @borderWidth;
+        border-style: @borderStyle;
+        border-color: @borderColor;
+    }
+}
+
+.border-bottom (
+    @borderWidth: 1px; 
+    @borderStyle: solid; 
+    @borderColor: #f1f1f1;
+    ) {
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-bottom: @borderWidth solid @borderColor;
+        transform-origin: left bottom;
+        -webkit-transform-origin: left bottom;
+        box-sizing: border-box;
+        pointer-events: none;
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+        &:after {
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2.5) {
+        &:after {
+            -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2.75) {
+        &:after {
+            -webkit-transform: scaleY(1 / 2.75);
+            transform: scaleY(1 / 2.75);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+        &:after {
+            transform: scaleY(1 / 3);
+            -webkit-transform: scaleY(1 / 3);
+        }
+    }
+}
+
+.border-right (
+    @borderWidth: 1px; 
+    @borderStyle: solid; 
+    @borderColor: #f1f1f1;
+    @height:100%;
+    ) {
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        border: 0;
+        right: 0;
+        border-right: @borderWidth solid @borderColor;
+        transform-origin: right top;
+        -webkit-transform-origin: right top;
+        box-sizing: border-box;
+        pointer-events: none;
+        height: @height;
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+        &:after {
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2.5) {
+        &:after {
+            -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2.75) {
+        &:after {
+            -webkit-transform: scaleY(1 / 2.75);
+            transform: scaleY(1 / 2.75);
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+        &:after {
+            transform: scaleY(1 / 3);
+            -webkit-transform: scaleY(1 / 3);
+        }
+    }
+}

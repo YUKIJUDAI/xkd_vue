@@ -1,10 +1,10 @@
 module.exports = {
     outputDir: "./dist/html-xiaokedou/pubilc",
     devServer: {
-        port: 8080,
+        port: 8083,
         proxy: {
             '/Api': {
-                target: "http://xkd.lethink.net/",
+                target: "/Api",
                 changeOrigin: true
             }
         }

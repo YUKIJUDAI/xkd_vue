@@ -4,12 +4,12 @@
             <span>+86</span>
             <input type="text" v-model="loginInfo.phone" class="xkd-input" placeholder="请输入手机号" />
         </div>
-        <CodeInput type="login" :phone="loginInfo.phone" @changeSmsCode="changeSmsCode"></CodeInput>
+        <CodeInput :type="type" :phone="loginInfo.phone" @changeSmsCode="changeSmsCode"></CodeInput>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 import CodeInput from "@/components/codeInput.vue";
 
@@ -17,6 +17,10 @@ import CodeInput from "@/components/codeInput.vue";
     components: { CodeInput }
 })
 export default class LoginByPassword extends Vue {
+
+    @Prop()
+    readonly type!: string;
+
     loginInfo = {
         phone: "",
         smscode: "",

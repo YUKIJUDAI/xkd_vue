@@ -1,6 +1,7 @@
+@import url("~@/assets/less/border.less");
+
 .dy-list {
-    height: 100vh;
-    background: #f5f5f5;
+    min-height: 100vh;
     .list {
         background: #fff;
     }
@@ -18,7 +19,7 @@
                 font-size: 0.28rem;
             }
             span {
-                font-size: 0.22rem;
+                font-size: 0.24rem;
                 color: #999;
             }
             .point {
@@ -60,8 +61,9 @@
     }
 }
 .dy-add {
-    margin: 0 1.32rem;
+    padding: 0 1.32rem;
     text-align: center;
+    background-color: #fff;
     .dy-bg {
         margin-top: 0.48rem;
         width: 2.72rem;
@@ -70,6 +72,56 @@
     .dy-help {
         margin-top: 0.24rem;
         font-size: 0.24rem;
+    }
+}
+.dy-share {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    background: url("~@/static/img/dy-share-bg.png") no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    .dy-share-main {
+        position: relative;
+        background: #fff;
+        width: 90%;
+        height: 9.5rem;
+        border-radius: 0.2rem;
+        box-shadow: 0px 0px 0.4rem #666;
+        img {
+            display: block;
+            width: 80%;
+            margin: 0 auto;
+        }
+        p {
+            margin: 0 0.3rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+        }
+    }
+    .dy-share-info {
+        margin: 0 0.3rem;
+        padding: 0.3rem 0;
+        display: flex;
+        align-items: center;
+        .border-bottom(1px, solid, #eee);
+        img {
+            margin: 0;
+            margin-right: 0.2rem;
+            width: 1.1rem;
+            border-radius: 0.2rem;
+        }
+    }
+    .dy-share-btn {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        border-radius: 0 0 0.2rem 0.2rem;
+        background: rgb(241, 89, 83);
+        height: 1rem;
+        line-height: 1rem;
+        text-align: center;
+        color: #fff;
     }
 }
 .info {
@@ -102,7 +154,7 @@
     }
     div + img {
         margin: 0.3rem auto;
-        width: 3.4rem;
-        height: 3.4rem;
+        width: 5rem;
+        height: 5rem;
     }
 }

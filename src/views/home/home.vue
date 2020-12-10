@@ -1,32 +1,35 @@
 <template>
     <div class="home">
-        <div class="home-fixed-top">
-            <!-- head -->
-            <div class="home-head">
-                <router-link tag="div" class="home-head-message" to="/message">
-                    <img src="@/static/img/message.png" alt="" />
-                    <p v-show="unRead"></p>
-                </router-link>
-                <div class="home-head-search">
-                    <img src="@/static/img/search.png" alt="" />
-                    <input type="text" placeholder="活出漂亮人生" disabled />
-                </div>
-                <div class="home-head-feedback">
-                    <img src="@/static/img/feedback.png" alt="" />
-                </div>
-                <div class="home-head-study">
-                    <img src="@/static/img/study.png" alt="" />
-                </div>
+        <!-- head -->
+        <div class="home-head">
+            <router-link tag="div" class="home-head-message" to="/message">
+                <img src="@/static/img/message.png" alt="" />
+                <p v-show="unRead"></p>
+            </router-link>
+            <div class="home-head-search" @click="toApplication('0')">
+                <img src="@/static/img/search.png" alt="" />
+                <input type="text" placeholder="测一测你的九型人格" disabled />
             </div>
-            <!-- nav -->
-            <nav>
-                <van-tabs animated swipeable color='#FF9900' title-active-color='#FF9900' @click="toApplication">
-                    <van-tab name="0" title="推荐"></van-tab>
+            <router-link tag="div" class="home-head-feedback" to="/idea">
+                <img src="@/static/img/feedback.png" alt="" />
+            </router-link>
+            <router-link tag="div" class="home-head-study" to="/college">
+                <img src="@/static/img/study.png" alt="" />
+            </router-link>
+        </div>
+        <!-- nav -->
+        <nav>
+            <div class="nav">
+                <van-tabs animated swipeable color='#666' title-active-color='#333' @click="toApplication">
+                    <van-tab name="0" title="推荐">
+                        <template #title>推荐</template>
+                    </van-tab>
                     <van-tab name="0" title="全部"></van-tab>
                     <van-tab :name="item.id" v-for="(item,i) in tagList" :key="i" :title="item.name"></van-tab>
                 </van-tabs>
-            </nav>
-        </div>
+            </div>
+        </nav>
+        <!-- </div> -->
         <!-- swiper -->
         <div class="home-swiper">
             <van-swipe>
@@ -49,25 +52,27 @@
             </ul>
         </div>
         <!-- announcement -->
-        <div class=" home-announcement">
-            <van-swipe vertical autoplay="3000" style="height:0.6rem" :show-indicators="false">
-                <van-swipe-item v-for="(item,i) in announcementList" :key="i" style="height:0.6rem">
-                    <span style="color: '#333'">系统公告</span>
-                    <span style="color: '#FCD000'"> | </span>
-                    <span>{{item.title}}</span>
-                    <p class="fr">
-                        <i class="right"></i>
-                    </p>
-                </van-swipe-item>
-            </van-swipe>
+        <div class="home-announcement">
+            <div class="home-announcement-main">
+                <van-swipe vertical autoplay="3000" style="height:0.6rem" :show-indicators="false">
+                    <van-swipe-item v-for="(item,i) in announcementList" :key="i" style="height:0.6rem" @click="$router.push('/announcement/detail/' + item.id)">
+                        <span style="color: '#333'">系统公告</span>
+                        <span style="color: '#FCD000'"> | </span>
+                        <span>{{item.title}}</span>
+                        <p class="fr">
+                            <i class="right"></i>
+                        </p>
+                    </van-swipe-item>
+                </van-swipe>
+            </div>
         </div>
         <!-- ranking -->
         <div class="home-ranking">
             <div class="home-title clearfix">
                 <p class="fl">收益排行</p>
-                <span class="fr">
+                <router-link tag="span" to="/leaderboard" class="fr">
                     全部<i class="right"></i>
-                </span>
+                </router-link>
             </div>
             <p class="home-ranking-remarks">注：收益排行数据为2020-8-23用户</p>
             <Leaderboard :limit="3"></Leaderboard>
@@ -116,7 +121,7 @@ export default class Home extends Vue {
         {
             src: require("@/static/img/menu1.png"),
             title: "邀请好友",
-            router: ""
+            router: "/share"
         },
         {
             src: require("@/static/img/menu2.png"),
@@ -126,12 +131,12 @@ export default class Home extends Vue {
         {
             src: require("@/static/img/menu3.png"),
             title: "收益报表",
-            router: ""
+            router: "/incomeStatement"
         },
         {
             src: require("@/static/img/menu4.png"),
             title: "爆单分析",
-            router: ""
+            router: "/hotOrder"
         },
         {
             src: require("@/static/img/menu5.png"),
@@ -189,4 +194,29 @@ export default class Home extends Vue {
 
 <style lang="less" scoped>
 @import url("./home.less");
+</style>
+<style lang="less">
+.home {
+    .van-tab {
+        font-size: 0.28rem !important;
+    }
+    .van-tabs__nav .van-tab:first-of-type {
+        padding-left: 0;
+    }
+    .van-tabs__line {
+        left: -0.12rem;
+        bottom: 0.1rem;
+        width: 0.36rem;
+        border-radius: 2px;
+    }
+    .van-tab--active .van-tab__text {
+        font-size: 0.34rem;
+    }
+    .van-tabs__nav--line {
+        padding-bottom: 0;
+    }
+    .van-tabs__wrap--scrollable .van-tabs__nav--complete {
+        padding: 0;
+    }
+}
 </style>

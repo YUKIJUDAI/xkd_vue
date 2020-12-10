@@ -38,7 +38,7 @@ export default class MessageList extends Vue {
             } else {
                 this.list = [...this.list, ...res.result.list];
             }
-            if (res.result.list.length === 10) {
+            if (this.list < res.result.total) {
                 this.page++;
             } else {
                 this.finished = true;

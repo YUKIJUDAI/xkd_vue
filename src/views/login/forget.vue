@@ -6,7 +6,7 @@
                 <span>+86</span>
                 <input type="text" v-model="loginInfo.phone" class="xkd-input" placeholder="请输入手机号" />
             </div>
-            <CodeInput type="forget" v-model="loginInfo.smscode" :phone="loginInfo.phone"></CodeInput>
+            <CodeInput type="forget" v-model="loginInfo.smscode" :phone="loginInfo.phone" @changeSmsCode="changeSmsCode"></CodeInput>
             <div class="xkd-input-label">
                 <span>新密码</span>
                 <input type="password" v-model="loginInfo.password" class="xkd-input" placeholder="请输入密码" />
@@ -39,6 +39,10 @@ interface LoginInfo {
 })
 export default class Forget extends Vue {
     loginInfo: LoginInfo = { phone: "", smscode: "", password: "" };
+
+    changeSmsCode(smsCode: string) {
+        this.loginInfo.smscode = smsCode;
+    }
 
     async forget() {
         const res: any = await this.$http.post("User/Forget/index", this.loginInfo);

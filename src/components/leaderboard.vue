@@ -2,7 +2,8 @@
     <div class="leaderboard">
         <ul>
             <li v-for="(item,i) in revenueList" :key="i">
-                <div class="leaderboard-num">{{i + 1}}</div>
+                <div class="leaderboard-num" style="color:#FCD000" v-if="i < 3">{{i + 1}}</div>
+                <div class="leaderboard-num color666" v-else>{{i + 1}}</div>
                 <div class="leaderboard-img">
                     <img :src="item.avatar | qnImg" alt="" class="leaderborder-avatar avatar1" v-if="i === 0"/>
                     <img :src="item.avatar | qnImg" alt="" class="leaderborder-avatar avatar2" v-else-if="i === 1"/>
@@ -13,7 +14,8 @@
                     <img src="@/static/img/hg2.png" alt="" class="leaderborder-crown" v-show="i === 2"/>
                 </div>
                 <div class="leaderboard-name">{{item.nickname}}</div>
-                <div class="leaderboard-price">{{~~item.money}}元</div>
+                <div class="leaderboard-price color333" v-if="i < 3">{{~~item.money}}元</div>
+                <div class="leaderboard-price color666" v-else>{{~~item.money}}元</div>
             </li>
         </ul>
     </div>

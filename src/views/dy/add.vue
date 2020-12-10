@@ -19,7 +19,7 @@
             </ul>
         </div>
         <div class="xkd-btn-yellow" @click="show=true">添加抖音号</div>
-        <p class="dy-help color999">查看教程</p>
+        <router-link tag="p" to="/helpCenter/detail/10004" class="dy-help color999">查看教程</router-link>
         <van-dialog v-model="show" :showConfirmButton="false" closeOnClickOverlay class="dy-dialog">
             <div class="dy-dialog-title">抖音APP扫码授权</div>
             <div class="color666 font14">截图进入抖音APP扫码授权</div>
@@ -60,6 +60,7 @@ export default class Add extends Vue {
     async getCode() {
         const res: any = await this.$http.post("douyin/code");
         this.pic_src = res;
+        this.$route.query.show && (this.show = true);
     }
 }    
 </script>

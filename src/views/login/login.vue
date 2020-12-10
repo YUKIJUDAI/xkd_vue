@@ -9,7 +9,7 @@
             </p>
         </div>
         <div class="login-form">
-            <component :is="loginWayTemp" ref="loginWayTemp"></component>
+            <component :is="loginWayTemp" ref="loginWayTemp" type="login"></component>
             <div class="login-submit">
                 <div class="xkd-btn-primary" @click="login">登录</div>
             </div>
@@ -43,10 +43,6 @@ export default class Login extends Vue {
 
     loginWayTemp: any = 'LoginByPassword'; //登录模板
 
-    created() {
-        // this.$toast({ type: "success", message: "你好" });
-    }
-
     // 修改登录方式
     changeLoginWay(loginWay: 0 | 1) {
         this.loginWay = loginWay;
@@ -58,9 +54,10 @@ export default class Login extends Vue {
         const url = ["User/Login/pwd", "User/Login/sms",][this.loginWay];
         const res: any = await this.$http.post(url, (this.$refs.loginWayTemp as any).loginInfo);
         if (res.code === 200) {
+            typeof res.result === "string" && (res.result = JSON.parse(res.result));
             this.$toast.success(res.msg);
-            this.$store.commit("SET_USER_INFO", res.result)
-            this.$router.push("/");
+            this.$store.commit("SET_USER_INFO", res.result);
+            this.$router.replace("/");
         } else {
             this.$toast({ type: "fail", message: res.msg });
         }

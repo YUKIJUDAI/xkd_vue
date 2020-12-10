@@ -6,7 +6,17 @@ const changeDay = (val: number, gs: string = "YYYY-MM-DD HH:mm:ss") => {
 };
 
 const qnImg = (val: string): string => {
+    if (typeof val !== "string") {
+        return "";
+    }
     return val.includes("http") ? val : qnUrl + val;
 };
 
-export default { changeDay, qnImg };
+const addMosaic = (val: string): string => {
+    if (typeof val !== "string" || val.length !== 11) {
+        return "";
+    }
+    return val.substr(0, 3) + " **** " + val.substr(7);
+};
+
+export default { changeDay, qnImg, addMosaic };

@@ -2,7 +2,7 @@
     <div class="signin">
         <div class="signin-top">
             <div class="rule" @click="showRule">签到规则</div>
-            <p>累计已获得10积分</p>
+            <p>累计已获得{{total_lottery_num}}积分</p>
             <div class="signin-panel">
                 <ul>
                     <li v-for="(item,i) in sign_detail" :key="i" :class="{ 'double' : i === 6 }">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="more">更多推广</div>
-        <div style="height:0.2rem;background:#f5f5f5"></div>
+        <div style="height:0.2rem"></div>
         <Goods sort="1" keyword="" tag="0" class="signin-goods"></Goods>
     </div>
 </template>
@@ -49,6 +49,7 @@ export default class signin extends Vue {
     is_sign: 0 | 1 = 0; // 是否已签到
     sign_detail: Array<{ [propsName: string]: any }> = [];
     day: number = 0;
+    total_lottery_num: number = 0; //累计积分
     dayArr = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"]
 
     created() {
@@ -75,6 +76,7 @@ export default class signin extends Vue {
             this.is_sign = res.result.is_sign;
             this.sign_detail = res.result.sign_detail;
             this.day = res.result.day;
+            this.total_lottery_num = res.result.total_lottery_num;
         }
     }
 
@@ -83,11 +85,11 @@ export default class signin extends Vue {
         this.$dialog.alert({
             title: "签到规则",
             message: '1.每日签到可以获得日签奖励，在单个周期内连续签到可以获得连签奖励，同1个周期内最多可领取1次;\n 2.每日最多可签到1次，断签则会重新计算连签天数; \n3.活动以及奖励最终解释权归商家所有。',
-            messageAlign:"left",
+            messageAlign: "left",
             theme: 'round-button',
             showCancelButton: true,
             confirmButtonColor: "#FCD000",
-            cancelButtonColor:"#eee"
+            cancelButtonColor: "#eee"
         }).then();
     }
 

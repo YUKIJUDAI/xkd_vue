@@ -1,2 +1,3 @@
-export const baseURL = process.env.NODE_ENV === "development" ? "/Api" : "http://xkd.lethink.net/Api/";
-export const qnUrl = "https://xkd-file.lethink.net/";
+export const baseURL = process.env.NODE_ENV === "development" ? "/Api" : "/Api";
+export const qnUrl = "";
+export const version = "1.0.0";

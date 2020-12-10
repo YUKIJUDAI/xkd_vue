@@ -3,7 +3,7 @@
         <div class="bing-status" v-show="type === '1'">
             <img src="@/static/img/success.png" alt="">
             <p>绑定成功</p>
-            <p class="font12 color999">请返回小科抖平台列表查看即可</p>
+            <div class="xkd-btn-yellow" @click="$router.replace('/')">返回平台首页</div>
         </div>
         <div class="bing-status" v-show="type === '0'">
             <img src="@/static/img/fail.png" alt="">
@@ -11,8 +11,9 @@
             <p class="font12 color999">请返回小科抖平台列表查看即可</p>
         </div>
         <div class="good-list">
-            <p class="good-list-title">产品列表</p>
-            <div class="good-list-main">
+            <h3 class="good-list-title">推荐产品</h3>
+            <GoodsList></GoodsList>
+            <!-- <div class="good-list-main">
                 <div class="goods-list clearfix" v-for="(item,i) in goodsList" :key="i">
                     <div class="goods-list-left fl">
                         <img :src="item.logo | qnImg" alt="">
@@ -25,19 +26,22 @@
                         <div class="xkd-btn-yellow">查看</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import GoodsList from "@/views/application/goods-list.vue";
 
-@Component
+@Component({
+    components: { GoodsList }
+})
 export default class extends Vue {
     goodsList: Array<{ [propsName: string]: any }> = [];
 
-    type: string | (string | null)[] = this.$route.query.type;
+    type: string | (string | null)[] = this.$route.params.type;
 
     page: number = 1;
     limit: number = 3;
@@ -47,7 +51,7 @@ export default class extends Vue {
     }
 
     async getGoods() {
-        const data = { is_free: 2, is_new: 2, is_hot: 2, tag: 0, page: this.page, limit: this.limit, sort: 1 };
+        const data = { is_free: 0, is_new: 0, is_hot: 0, tag: 0, page: this.page, limit: this.limit, sort: 1 };
         const res: any = await this.$http.post("Goods/index", data);
         if (res.code === 200) this.goodsList = res.result.list;
     }

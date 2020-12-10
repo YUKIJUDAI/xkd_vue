@@ -1,0 +1,98 @@
+.app-detail {
+    .app-detail-head {
+        display: flex;
+        padding: 0.4rem 0.32rem;
+        background: #fff;
+        .app-detail-head-left {
+            img {
+                width: 1rem;
+                height: 1rem;
+                border-radius: 4px;
+            }
+        }
+        .app-detail-head-center {
+            width: calc(~"100% - 1rem");
+            padding: 0 0.16rem;
+            font-size: 0.24rem;
+            color: #999;
+            p {
+                &:first-child {
+                    font-size: 0.32rem;
+                    color: #333;
+                    margin-bottom: 0.15rem;
+                }
+                &:nth-child(2) {
+                    margin-top: 0.3rem;
+                    font-size: 0.24rem;
+                }
+            }
+            .xingqu {
+                margin-right: 0.08rem;
+                display: inline-block;
+                background-size: cover;
+                width: 0.24rem;
+                height: 0.24rem;
+                border-radius: 0.12rem;
+                vertical-align: -0.02rem;
+            }
+        }
+    }
+    .app-detail-main {
+        padding: 0 0.32rem 0.3rem;
+        background: #fff;
+        .app-content {
+            margin-bottom: 0.6rem;
+        }
+        ul {
+            margin-top: 0.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            overflow-x: scroll;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            li {
+                flex-shrink: 0;
+                width: 40vw;
+                padding-right: 0.4rem;
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .app-income {
+        padding: 0 0.32rem 0.3rem;
+        background: #fff;
+        .reload {
+            width: 0.35rem;
+            height: 0.35rem;
+            vertical-align: -0.06rem;
+        }
+        .app-h {
+            height: 0.3rem;
+            margin: 0 -0.32rem;
+            background: #f7f8fa;
+        }
+        .app-data {
+            padding: 0.3rem 0;
+            .app-date {
+                margin-top: 0.3rem;
+                width: 1.9rem;
+                padding: 0.2rem 0.2rem;
+                background: #f5f5f5;
+                .down {
+                    display: inline-block;
+                    background: url("~@/static/img/down.png");
+                    background-size: cover;
+                    width: 0.3rem;
+                    height: 0.3rem;
+                    vertical-align: -0.06rem;
+                }
+            }
+        }
+        .app-title {
+            padding: 0.2rem 0;
+        }
+    }
+}
